@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISpace Hackathon - Data Science Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🚀 MISpace Hackathon Dashboard</h1>
+            <p class="subtitle">Data Science Project with Real-Time Analytics</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+            <button class="nav-btn" onclick="showTab('analytics')">Analytics</button>
+            <button class="nav-btn" onclick="showTab('predictions')">Predictions</button>
+            <button class="nav-btn" onclick="showTab('api')">API</button>
+        </nav>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="grid">
+                <div class="card">
+                    <h2>System Status</h2>
+                    <div id="status-content">
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            <span id="status-text">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Quick Stats</h2>
+                    <div id="stats-content">
+                        <div class="stat-item">
+                            <span class="stat-label">Data Points:</span>
+                            <span class="stat-value" id="data-points">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Features:</span>
+                            <span class="stat-value" id="features">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Models:</span>
+                            <span class="stat-value" id="models">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>About This Project</h2>
+                <p>This is a comprehensive Python data science project template featuring:</p>
+                <ul>
+                    <li>FastAPI backend with RESTful API endpoints</li>
+                    <li>Data processing and transformation pipelines</li>
+                    <li>Machine learning model integration</li>
+                    <li>Interactive dashboard for visualization</li>
+                    <li>Real-time analytics and predictions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analytics" class="tab-content">
+            <div class="card">
+                <h2>Data Visualization</h2>
+                <div id="chart-container">
+                    <canvas id="mainChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Time Series Analysis</h2>
+                <div id="timeseries-plot"></div>
+            </div>
+
+            <div class="card">
+                <h2>Data Summary</h2>
+                <div id="summary-content">
+                    <pre id="summary-data">Loading...</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictions Tab -->
+        <div id="predictions" class="tab-content">
+            <div class="card">
+                <h2>Make Predictions</h2>
+                <form id="prediction-form">
+                    <div class="form-group">
+                        <label for="feature1">Feature 1:</label>
+                        <input type="number" id="feature1" name="feature1" step="0.1" value="0.5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feature2">Feature 2:</label>
+                        <input type="number" id="feature2" name="feature2" step="0.1" value="0.5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feature3">Feature 3:</label>
+                        <input type="number" id="feature3" name="feature3" step="0.1" value="0.5" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Predict</button>
+                </form>
+                
+                <div id="prediction-result" class="result-box" style="display: none;">
+                    <h3>Prediction Result</h3>
+                    <div id="prediction-output"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Tab -->
+        <div id="api" class="tab-content">
+            <div class="card">
+                <h2>API Documentation</h2>
+                <p>Explore the API endpoints:</p>
+                <ul>
+                    <li><strong>GET /health</strong> - Health check endpoint</li>
+                    <li><strong>GET /api/status</strong> - API status and information</li>
+                    <li><strong>GET /api/data/summary</strong> - Get data summary statistics</li>
+                    <li><strong>POST /api/predict</strong> - Make predictions</li>
+                    <li><strong>GET /api/visualizations/sample</strong> - Get sample visualization data</li>
+                    <li><strong>POST /api/data/process</strong> - Process data</li>
+                </ul>
+                <a href="/docs" target="_blank" class="btn-primary">View Interactive API Docs</a>
+            </div>
+
+            <div class="card">
+                <h2>Test API Endpoint</h2>
+                <button onclick="testAPI()" class="btn-primary">Test /api/status</button>
+                <div id="api-result" class="result-box" style="display: none;">
+                    <pre id="api-output"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 MISpace Hackathon. Built with FastAPI, Python, and ❤️</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
