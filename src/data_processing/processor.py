@@ -1,61 +1,110 @@
-"""Data processing utilities."""
+"""Data processing utilities for netCDF files."""
 
 import pandas as pd
 import numpy as np
-from typing import Dict, Any, List
+import netCDF4 as nc
+from typing import Dict, Any, List, Optional
 from pathlib import Path
 
 
 class DataProcessor:
-    """Data processing and transformation utilities."""
+    """Data processing and transformation utilities for netCDF files."""
     
     def __init__(self):
         """Initialize the data processor."""
         self.data = None
+        self.dataset = None
+        self.variables = {}
     
-    def load_data(self, filepath: str) -> pd.DataFrame:
-        """Load data from a file.
+    def load_data(self, filepath: str, variables: Optional[List[str]] = None) -> pd.DataFrame:
+        """Load data from a netCDF file.
         
         Args:
-            filepath: Path to the data file
+            filepath: Path to the netCDF (.nc) file
+            variables: List of variable names to load (loads all if None)
             
         Returns:
-            Loaded DataFrame
+            Loaded DataFrame with variables as columns
         """
         file_path = Path(filepath)
         
-        if file_path.suffix == '.csv':
-            self.data = pd.read_csv(filepath)
-        elif file_path.suffix in ['.xlsx', '.xls']:
-            self.data = pd.read_excel(filepath)
-        elif file_path.suffix == '.json':
-            self.data = pd.read_json(filepath)
-        else:
-            raise ValueError(f"Unsupported file format: {file_path.suffix}")
+        if file_path.suffix != '.nc':
+            raise ValueError(f"Only .nc (netCDF) files are supported, got: {file_path.suffix}")
+        
+        # Open netCDF dataset
+        self.dataset = nc.Dataset(filepath, 'r')
+        
+        # Extract variables
+        data_dict = {}
+        
+        if variables is None:
+            # Load all variables
+            variables = [var for var in self.dataset.variables.keys()]
+        
+        for var_name in variables:
+            if var_name in self.dataset.variables:
+                var_data = self.dataset.variables[var_name][:]
+                # Flatten if multi-dimensional
+                if var_data.ndim > 1:
+                    var_data = var_data.flatten()
+                data_dict[var_name] = var_data
+                self.variables[var_name] = self.dataset.variables[var_name]
+        
+        # Create DataFrame
+        self.data = pd.DataFrame(data_dict)
         
         return self.data
     
-    def clean_data(self, data: pd.DataFrame = None) -> pd.DataFrame:
-        """Clean the data by handling missing values and outliers.
+    def get_metadata(self) -> Dict[str, Any]:
+        """Get metadata from the netCDF file.
+        
+        Returns:
+            Dictionary containing dimensions, variables, and attributes
+        """
+        if self.dataset is None:
+            return {}
+        
+        metadata = {
+            "dimensions": {dim: len(self.dataset.dimensions[dim]) for dim in self.dataset.dimensions},
+            "variables": list(self.dataset.variables.keys()),
+            "global_attributes": {attr: self.dataset.getncattr(attr) for attr in self.dataset.ncattrs()}
+        }
+        
+        return metadata
+    
+    def close(self):
+        """Close the netCDF dataset."""
+        if self.dataset is not None:
+            self.dataset.close()
+            self.dataset = None
+    
+    def clean_data(self, data: pd.DataFrame = None, fill_value: Optional[float] = None) -> pd.DataFrame:
+        """Clean the data by handling missing values and masked values from netCDF.
         
         Args:
             data: DataFrame to clean (uses self.data if None)
+            fill_value: Value to use for filling missing data (uses median if None)
             
         Returns:
             Cleaned DataFrame
         """
         if data is None:
+            if self.data is None:
+                raise ValueError("No data loaded. Call load_data first.")
             data = self.data.copy()
+        else:
+            data = data.copy()
         
         # Remove duplicates
         data = data.drop_duplicates()
         
-        # Handle missing values
+        # Handle missing values and masked arrays from netCDF
         numeric_columns = data.select_dtypes(include=[np.number]).columns
-        data[numeric_columns] = data[numeric_columns].fillna(data[numeric_columns].median())
         
-        categorical_columns = data.select_dtypes(include=['object']).columns
-        data[categorical_columns] = data[categorical_columns].fillna(data[categorical_columns].mode().iloc[0])
+        if fill_value is not None:
+            data[numeric_columns] = data[numeric_columns].fillna(fill_value)
+        else:
+            data[numeric_columns] = data[numeric_columns].fillna(data[numeric_columns].median())
         
         return data
     
