@@ -1,3 +1,9 @@
+# Raw Data
+data/*.csv
+data/*.json
+data/*.nc
+!data/README.md
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
