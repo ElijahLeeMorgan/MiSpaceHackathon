@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science - MISpace Hackathon</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🌦️ MISpace Hackathon</h1>
+            <p class="subtitle">Data Science & ML Section</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="data-science.html" class="nav-btn active">Data Science</a>
+            <a href="index.html#about" class="nav-btn">About</a>
+        </nav>
+
+        <!-- Main Content -->
+        <section class="content-section">
+            <div class="card">
+                <h2>🔬 Working with Weather Data</h2>
+                <p>Our project focuses on analyzing weather data using NetCDF files, a standard format in climate and meteorological sciences.</p>
+            </div>
+
+            <!-- NetCDF Section -->
+            <div class="card">
+                <h2>📦 NetCDF (.nc) Files</h2>
+                <p>NetCDF (Network Common Data Form) is a self-describing, machine-independent data format for array-oriented scientific data.</p>
+                
+                <h3>Key Features:</h3>
+                <ul>
+                    <li><strong>Multi-dimensional:</strong> Supports arrays of data with multiple dimensions (time, latitude, longitude, altitude)</li>
+                    <li><strong>Metadata:</strong> Includes descriptive information about the data, units, and coordinates</li>
+                    <li><strong>Efficient:</strong> Optimized for reading and writing large datasets</li>
+                    <li><strong>Standard:</strong> Widely used in climate science, meteorology, and oceanography</li>
+                </ul>
+
+                <h3>Python Libraries for NetCDF:</h3>
+                <div class="code-block">
+                    <pre><code># Essential libraries
+import netCDF4 as nc
+import xarray as xr
+import numpy as np
+import pandas as pd
+
+# Open a NetCDF file
+dataset = xr.open_dataset('weather_data.nc')
+
+# View structure
+print(dataset)
+
+# Access variables
+temperature = dataset['temperature']
+precipitation = dataset['precipitation']</code></pre>
+                </div>
+            </div>
+
+            <!-- Weather Data Types -->
+            <div class="card">
+                <h2>🌡️ Weather Data Types</h2>
+                <div class="data-types-grid">
+                    <div class="data-type-card">
+                        <h4>Temperature</h4>
+                        <p>Surface temperature, air temperature at various altitudes</p>
+                    </div>
+                    <div class="data-type-card">
+                        <h4>Precipitation</h4>
+                        <p>Rainfall, snowfall, total precipitation rates</p>
+                    </div>
+                    <div class="data-type-card">
+                        <h4>Wind</h4>
+                        <p>Wind speed, wind direction, gusts</p>
+                    </div>
+                    <div class="data-type-card">
+                        <h4>Pressure</h4>
+                        <p>Atmospheric pressure, sea-level pressure</p>
+                    </div>
+                    <div class="data-type-card">
+                        <h4>Humidity</h4>
+                        <p>Relative humidity, specific humidity</p>
+                    </div>
+                    <div class="data-type-card">
+                        <h4>Cloud Cover</h4>
+                        <p>Cloud fraction, cloud types</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ML Applications -->
+            <div class="card">
+                <h2>🤖 Machine Learning Applications</h2>
+                <p>We apply various ML techniques to weather data:</p>
+
+                <h3>1. Weather Forecasting</h3>
+                <p>Predict future weather conditions based on historical patterns using time series models and neural networks.</p>
+                <div class="code-block">
+                    <pre><code># Example: Simple weather prediction
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+
+# Prepare features and target
+X = weather_features  # Temperature, pressure, humidity, etc.
+y = future_temperature  # Target variable
+
+# Train model
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = RandomForestRegressor(n_estimators=100)
+model.fit(X_train, y_train)
+
+# Predict
+predictions = model.predict(X_test)</code></pre>
+                </div>
+
+                <h3>2. Pattern Recognition</h3>
+                <p>Identify weather patterns, anomalies, and climate trends using clustering and classification algorithms.</p>
+
+                <h3>3. Extreme Event Detection</h3>
+                <p>Detect and predict extreme weather events like storms, heat waves, and cold snaps.</p>
+
+                <h3>4. Climate Analysis</h3>
+                <p>Analyze long-term climate trends and variability.</p>
+            </div>
+
+            <!-- Data Processing Workflow -->
+            <div class="card">
+                <h2>⚙️ Data Processing Workflow</h2>
+                <ol class="workflow-list">
+                    <li>
+                        <strong>Data Acquisition:</strong>
+                        <p>Download NetCDF files from weather data sources (NOAA, ECMWF, NASA, etc.)</p>
+                    </li>
+                    <li>
+                        <strong>Data Loading:</strong>
+                        <p>Use xarray or netCDF4 to load and explore the dataset structure</p>
+                    </li>
+                    <li>
+                        <strong>Data Cleaning:</strong>
+                        <p>Handle missing values, outliers, and data quality issues</p>
+                    </li>
+                    <li>
+                        <strong>Feature Engineering:</strong>
+                        <p>Create derived features like temperature gradients, moving averages, seasonal indicators</p>
+                    </li>
+                    <li>
+                        <strong>Model Training:</strong>
+                        <p>Train machine learning models on processed data</p>
+                    </li>
+                    <li>
+                        <strong>Evaluation & Visualization:</strong>
+                        <p>Assess model performance and create visualizations</p>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Example Code -->
+            <div class="card">
+                <h2>💻 Complete Example</h2>
+                <div class="code-block">
+                    <pre><code># Complete workflow example
+import xarray as xr
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+
+# 1. Load NetCDF file
+ds = xr.open_dataset('weather_data.nc')
+
+# 2. Extract variables
+temp = ds['temperature']
+precip = ds['precipitation']
+
+# 3. Convert to pandas DataFrame for ML
+df = pd.DataFrame({
+    'temperature': temp.values.flatten(),
+    'precipitation': precip.values.flatten()
+})
+
+# 4. Clean data
+df = df.dropna()
+
+# 5. Feature scaling
+scaler = StandardScaler()
+df_scaled = scaler.fit_transform(df)
+
+# 6. Create visualizations
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.plot(temp.mean(dim=['lat', 'lon']))
+plt.title('Average Temperature Over Time')
+plt.xlabel('Time')
+plt.ylabel('Temperature (°C)')
+
+plt.subplot(1, 2, 2)
+plt.plot(precip.mean(dim=['lat', 'lon']))
+plt.title('Average Precipitation Over Time')
+plt.xlabel('Time')
+plt.ylabel('Precipitation (mm)')
+plt.tight_layout()
+plt.show()</code></pre>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="card">
+                <h2>📚 Resources & Data Sources</h2>
+                
+                <h3>Weather Data Sources:</h3>
+                <ul>
+                    <li><strong>NOAA:</strong> National Oceanic and Atmospheric Administration - <a href="https://www.noaa.gov" target="_blank">www.noaa.gov</a></li>
+                    <li><strong>ECMWF:</strong> European Centre for Medium-Range Weather Forecasts - <a href="https://www.ecmwf.int" target="_blank">www.ecmwf.int</a></li>
+                    <li><strong>NASA:</strong> Earth Observing System Data - <a href="https://earthdata.nasa.gov" target="_blank">earthdata.nasa.gov</a></li>
+                    <li><strong>NCEP:</strong> National Centers for Environmental Prediction</li>
+                </ul>
+
+                <h3>Python Libraries:</h3>
+                <ul>
+                    <li><strong>xarray:</strong> Multi-dimensional labeled arrays for NetCDF</li>
+                    <li><strong>netCDF4:</strong> Low-level NetCDF interface</li>
+                    <li><strong>pandas:</strong> Data manipulation and analysis</li>
+                    <li><strong>scikit-learn:</strong> Machine learning algorithms</li>
+                    <li><strong>matplotlib/seaborn:</strong> Data visualization</li>
+                    <li><strong>cartopy:</strong> Geospatial data visualization</li>
+                </ul>
+
+                <h3>Learning Resources:</h3>
+                <ul>
+                    <li>xarray documentation: <a href="https://docs.xarray.dev" target="_blank">docs.xarray.dev</a></li>
+                    <li>Climate Data Guide by NCAR</li>
+                    <li>Python for Atmospheric Science</li>
+                </ul>
+            </div>
+
+            <!-- Project Structure -->
+            <div class="card">
+                <h2>📁 Our Project Structure</h2>
+                <div class="code-block">
+                    <pre><code>MISpaceHackathon/
+├── data/                    # Weather data files
+│   ├── raw/                # Raw NetCDF files
+│   ├── processed/          # Processed datasets
+│   └── external/           # External data sources
+├── notebooks/              # Jupyter notebooks
+│   └── 01_data_exploration.ipynb
+├── src/                    # Source code
+│   ├── data_processing/   # Data processing scripts
+│   ├── models/            # ML models
+│   └── utils/             # Helper functions
+└── index.html             # This website</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 MISpace Hackathon Team. Weather Data Science Project.</p>
+            <p><a href="index.html">← Back to Home</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,77 +1,46 @@
-# MISpace Hackathon - Data Science Project
+# MISpace Hackathon - Weather Data Science Dashboard
 
-A comprehensive Python data science project template with FastAPI backend, interactive dashboard, and machine learning capabilities.
+A static GitHub Pages website and dashboard for weather data science and machine learning projects. Focus on working with NetCDF (.nc) files and weather data analysis.
 
-## 🚀 Features
+## 🌦️ Features
 
-- **FastAPI Backend**: RESTful API with automatic documentation
-- **Interactive Dashboard**: Real-time data visualization and analytics
-- **Data Processing Pipeline**: Robust data cleaning and transformation utilities
-- **Machine Learning Models**: Example ML models with training and prediction
+- **Static Dashboard**: GitHub Pages hosted website for project documentation
+- **Weather Data Focus**: Specialized in NetCDF (.nc) file processing and analysis
+- **Data Science Section**: Comprehensive guide for ML work with weather data
+- **Machine Learning**: Examples and guides for weather prediction and pattern recognition
 - **Jupyter Notebooks**: Interactive data exploration and analysis
-- **Docker Support**: Easy deployment with Docker and Docker Compose
-- **Testing Suite**: Comprehensive unit tests with pytest
-- **Code Quality**: Linting, formatting, and type checking tools
+- **Simple & Clean**: Easy to navigate interface without backend dependencies
 
 ## 📁 Project Structure
 
 ```
 MISpaceHackathon/
-├── config/                 # Configuration management
-│   ├── __init__.py
-│   └── settings.py        # Application settings
-├── data/                  # Data storage
-│   ├── raw/              # Raw data files
-│   ├── processed/        # Processed data files
+├── assets/                 # Static website assets
+│   └── css/               # Stylesheets
+│       └── style.css
+├── data/                  # Weather data storage
+│   ├── raw/              # Raw NetCDF files
+│   ├── processed/        # Processed datasets
 │   └── external/         # External data sources
-├── frontend/             # Dashboard frontend
-│   ├── static/
-│   │   ├── css/         # Stylesheets
-│   │   └── js/          # JavaScript files
-│   └── templates/       # HTML templates
-│       └── index.html   # Main dashboard
 ├── notebooks/            # Jupyter notebooks
 │   └── 01_data_exploration.ipynb
-├── scripts/              # Utility scripts
-│   └── generate_sample_data.py
-├── src/                  # Source code
-│   ├── api/             # FastAPI application
-│   │   ├── __init__.py
-│   │   ├── main.py      # API entry point
-│   │   └── routes.py    # API endpoints
+├── src/                  # Python source code
 │   ├── data_processing/ # Data processing utilities
-│   │   ├── __init__.py
-│   │   └── processor.py
-│   ├── models/          # Machine learning models
-│   │   ├── __init__.py
-│   │   └── example_model.py
+│   ├── models/          # ML models
 │   └── utils/           # Helper functions
-│       ├── __init__.py
-│       └── helpers.py
-├── tests/               # Test suite
-│   ├── __init__.py
-│   ├── test_api.py
-│   ├── test_data_processing.py
-│   └── test_models.py
-├── .env.example         # Environment variables template
-├── .gitignore          # Git ignore rules
-├── docker-compose.yml  # Docker Compose configuration
-├── Dockerfile          # Docker image definition
-├── Makefile            # Build automation
-├── requirements.txt    # Python dependencies
-└── setup.py            # Package setup
+├── index.html           # Main landing page
+├── data-science.html    # Data science guide page
+└── README.md            # This file
 
 ```
 
-## 🛠️ Installation
+## 🛠️ Viewing the Website
 
-### Prerequisites
+### GitHub Pages
 
-- Python 3.8 or higher
-- pip package manager
-- (Optional) Docker and Docker Compose
+Visit the live website at: `https://elijahleemorgan.github.io/MISpaceHackathon/`
 
-### Local Installation
+### Local Development
 
 1. **Clone the repository**:
    ```bash
@@ -79,263 +48,215 @@ MISpaceHackathon/
    cd MISpaceHackathon
    ```
 
-2. **Create a virtual environment**:
+2. **Open in browser**:
+   Simply open `index.html` in your web browser, or use a simple HTTP server:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   # Python 3
+   python -m http.server 8000
+   
+   # Then visit: http://localhost:8000
    ```
 
-3. **Install dependencies**:
+3. **For Python Data Science Work**:
    ```bash
-   make install
-   # Or directly with pip:
+   # Create virtual environment
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   
+   # Install dependencies
    pip install -r requirements.txt
    ```
 
-4. **Set up environment variables**:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-
-5. **Generate sample data** (optional):
-   ```bash
-   python scripts/generate_sample_data.py
-   ```
-
-### Docker Installation
-
-1. **Build and start containers**:
-   ```bash
-   make docker-build
-   make docker-up
-   ```
-
-2. **Access the services**:
-   - API: http://localhost:8000
-   - API Docs: http://localhost:8000/docs
-   - Jupyter: http://localhost:8888
-
 ## 🚦 Quick Start
 
-### Running the API Server
+### Viewing the Dashboard
 
-**Using Make**:
-```bash
-make start
-```
+Simply open the website in your browser or visit the GitHub Pages URL.
 
-**Direct Python**:
-```bash
-python -m src.api.main
-```
-
-**With custom configuration**:
-```bash
-API_PORT=8080 python -m src.api.main
-```
-
-The API will be available at:
-- Dashboard: http://localhost:8000
-- Interactive API Docs: http://localhost:8000/docs
-- Alternative Docs: http://localhost:8000/redoc
-
-### Running Tests
-
-```bash
-# Run all tests
-make test
-
-# Run tests with coverage
-make test-cov
-
-# Run specific test file
-pytest tests/test_api.py -v
-```
-
-### Code Quality
-
-```bash
-# Lint code
-make lint
-
-# Format code
-make format
-
-# Type checking
-make typecheck
-```
-
-## 📊 API Endpoints
-
-### Health & Status
-
-- `GET /health` - Health check
-- `GET /api/status` - API status and information
-
-### Data Operations
-
-- `GET /api/data/summary` - Get data summary statistics
-- `POST /api/data/process` - Process data with configuration
-
-### Machine Learning
-
-- `POST /api/predict` - Make predictions with the model
-
-### Visualizations
-
-- `GET /api/visualizations/sample` - Get sample visualization data
-
-## 🎯 Usage Examples
-
-### Making Predictions
+### Working with Weather Data
 
 ```python
-import requests
+# Install required libraries
+pip install xarray netCDF4 pandas numpy matplotlib
 
-url = "http://localhost:8000/api/predict"
-data = {
-    "features": [0.5, -0.3, 0.8]
-}
+# Example: Load and analyze a NetCDF file
+import xarray as xr
+import matplotlib.pyplot as plt
 
-response = requests.post(url, json=data)
-print(response.json())
+# Open NetCDF file
+ds = xr.open_dataset('weather_data.nc')
+
+# View dataset info
+print(ds)
+
+# Access temperature data
+temp = ds['temperature']
+
+# Plot average temperature
+temp.mean(dim=['lat', 'lon']).plot()
+plt.title('Average Temperature Over Time')
+plt.show()
 ```
 
-### Getting Data Summary
+### Running Jupyter Notebooks
 
-```python
-import requests
+```bash
+# Start Jupyter
+jupyter notebook notebooks/
 
-url = "http://localhost:8000/api/data/summary"
-response = requests.get(url)
-summary = response.json()
-print(summary)
+# Or use JupyterLab
+jupyter lab
 ```
 
-### Using the Data Processor
+## 📊 Working with NetCDF Files
+
+### What are NetCDF Files?
+
+NetCDF (Network Common Data Form) files are the standard format for weather and climate data:
+- Multi-dimensional arrays (time, latitude, longitude, altitude)
+- Self-describing with embedded metadata
+- Efficient storage and access
+- Widely used in meteorology and climate science
+
+### Essential Python Libraries
+
+```bash
+pip install xarray netCDF4 numpy pandas matplotlib cartopy
+```
+
+### Common Weather Data Variables
+
+- **Temperature**: Surface and atmospheric temperature
+- **Precipitation**: Rainfall, snowfall amounts
+- **Wind**: Speed, direction, gusts
+- **Pressure**: Atmospheric and sea-level pressure
+- **Humidity**: Relative and specific humidity
+- **Cloud Cover**: Cloud fraction and types
+
+## 🎯 Machine Learning Applications
+
+### Weather Forecasting
+
+Predict future weather conditions using:
+- Time series models (ARIMA, LSTM)
+- Random Forests and Gradient Boosting
+- Neural Networks
+
+### Pattern Recognition
+
+Identify weather patterns and anomalies:
+- Clustering algorithms (K-means, DBSCAN)
+- Classification models
+- Anomaly detection
+
+### Example ML Workflow
 
 ```python
-from src.data_processing.processor import DataProcessor
+from sklearn.ensemble import RandomForestRegressor
+import xarray as xr
 import pandas as pd
 
-# Initialize processor
-processor = DataProcessor()
+# Load weather data
+ds = xr.open_dataset('weather_data.nc')
 
-# Load data
-data = processor.load_data("data/raw/sample_data.csv")
+# Prepare features
+features = ['temperature', 'pressure', 'humidity']
+X = pd.DataFrame({feat: ds[feat].values.flatten() for feat in features})
+y = ds['future_temp'].values.flatten()
 
-# Clean data
-cleaned = processor.clean_data()
+# Train model
+model = RandomForestRegressor(n_estimators=100)
+model.fit(X, y)
 
-# Get statistics
-stats = processor.get_statistics()
-```
-
-### Training a Model
-
-```python
-from src.models.example_model import ExampleModel
-import numpy as np
-
-# Create sample data
-X = np.random.randn(100, 3)
-y = np.random.randint(0, 2, 100)
-
-# Initialize and train model
-model = ExampleModel()
-model.train(X, y)
-
-# Make prediction
-prediction = model.predict([0.5, -0.3, 0.8])
-print(prediction)
+# Make predictions
+predictions = model.predict(X_test)
 ```
 
 ## 📓 Jupyter Notebooks
 
-Start Jupyter to explore the notebooks:
+Explore data interactively:
 
 ```bash
+# Start Jupyter Notebook
 jupyter notebook notebooks/
+
+# Or JupyterLab
+jupyter lab
 ```
 
-The included notebook demonstrates:
-- Data loading and exploration
-- Visualization techniques
-- Data processing pipelines
-- Model training and prediction
-
-## 🐳 Docker Commands
-
-```bash
-# Build images
-make docker-build
-
-# Start services
-make docker-up
-
-# Stop services
-make docker-down
-
-# View logs
-make docker-logs
-```
+Example notebooks included:
+- Data exploration with NetCDF files
+- Weather data visualization
+- Machine learning for weather prediction
+- Time series analysis
 
 ## 🧪 Development
 
-### Project Setup for Development
+### Project Setup
 
-1. Install development dependencies:
-   ```bash
-   make install-dev
-   ```
+1. Clone and navigate to the repository
+2. Install Python dependencies: `pip install -r requirements.txt`
+3. Open `index.html` in a browser or use a local server
+4. Modify HTML/CSS in `assets/` directory
+5. Add Python code in `src/` directory for data processing
 
-2. Run tests before committing:
-   ```bash
-   make test
-   ```
+### Adding New Content
 
-3. Format and lint your code:
-   ```bash
-   make format
-   make lint
-   ```
+1. Create new HTML pages as needed
+2. Link them in the navigation
+3. Style with existing CSS or add custom styles
+4. Keep it simple and focused on weather data science
 
-### Adding New Features
+## 📝 Weather Data Sources
 
-1. Create feature branch
-2. Add your code in appropriate directories
-3. Write tests in `tests/`
-4. Update documentation
-5. Run tests and linting
-6. Submit pull request
+### Recommended Data Sources
 
-## 📝 Configuration
+- **NOAA**: National Oceanic and Atmospheric Administration
+  - https://www.noaa.gov
+  - Free weather and climate data
 
-Configuration is managed through environment variables. See `.env.example` for available options:
+- **ECMWF**: European Centre for Medium-Range Weather Forecasts
+  - https://www.ecmwf.int
+  - Reanalysis data (ERA5)
 
-- `API_HOST`: API server host (default: 0.0.0.0)
-- `API_PORT`: API server port (default: 8000)
-- `DATABASE_URL`: Database connection string
-- `ENVIRONMENT`: Environment (development/production)
-- `LOG_LEVEL`: Logging level (INFO/DEBUG/WARNING/ERROR)
+- **NASA**: Earth Observing System
+  - https://earthdata.nasa.gov
+  - Satellite weather data
 
-## 🔒 Security
+- **NCEP**: National Centers for Environmental Prediction
+  - Numerical weather prediction data
 
-- Never commit `.env` file with secrets
-- Change `SECRET_KEY` in production
-- Use environment-specific configurations
-- Keep dependencies updated
+### Python Libraries for Weather Data
+
+```bash
+# Core libraries
+pip install xarray netCDF4 numpy pandas
+
+# Visualization
+pip install matplotlib seaborn cartopy
+
+# Machine Learning
+pip install scikit-learn tensorflow pytorch
+
+# Additional tools
+pip install scipy jupyter
+```
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please:
+Contributions welcome! To contribute:
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
-4. Add tests
+3. Make your changes (HTML, CSS, Python code)
+4. Test your changes locally
 5. Submit a pull request
+
+Focus areas:
+- Weather data analysis examples
+- ML model implementations
+- Data visualization improvements
+- Documentation enhancements
 
 ## 📄 License
 
@@ -347,18 +268,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- FastAPI for the amazing web framework
-- Scikit-learn for machine learning capabilities
-- Plotly and Chart.js for visualizations
-- The open-source community
+- xarray and NetCDF communities for excellent tools
+- NOAA, ECMWF, and NASA for providing open weather data
+- Python data science community
+- Scikit-learn and TensorFlow teams
+- GitHub Pages for free hosting
 
 ## 📞 Support
 
-For issues and questions:
+For questions and support:
 - Open an issue on GitHub
-- Check the API documentation at `/docs`
-- Review the example notebooks
+- Check the Data Science guide page
+- Review example notebooks
+- Visit weather data source documentation
 
 ---
 
-Built with ❤️ for the MISpace Hackathon
+Built with ❤️ for weather data science and machine learning
