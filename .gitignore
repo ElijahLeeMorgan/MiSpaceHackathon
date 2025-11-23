@@ -3,6 +3,7 @@ data/*.csv
 data/*.json
 data/*.nc
 !data/README.md
+src/data_processing/utils/out/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
