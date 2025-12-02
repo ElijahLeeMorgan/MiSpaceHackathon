@@ -1,71 +1,100 @@
-# MISpace Hackathon - Weather Data Science Dashboard
+# MISpace Hackathon - Great Lakes Ice Forecasting and Data Science Platform
 
-A static GitHub Pages website and dashboard for weather data science and machine learning projects. Focus on working with NetCDF (.nc) files and weather data analysis.
+A data science and machine learning project focused on Great Lakes ice forecasting using NOAA NetCDF (.nc) datasets. Includes full data processing pipelines, U-Net forecasting, visualization tools, and a static GitHub Pages dashboard.
 
-## 🌦️ Features
+## Features
 
-- **Static Dashboard**: GitHub Pages hosted website for project documentation
-- **Weather Data Focus**: Specialized in NetCDF (.nc) file processing and analysis
-- **Data Science Section**: Comprehensive guide for ML work with weather data
-- **Machine Learning**: Examples and guides for weather prediction and pattern recognition
-- **Jupyter Notebooks**: Interactive data exploration and analysis
-- **Simple & Clean**: Easy to navigate interface without backend dependencies
+- **End-to-end pipeline** for Great Lakes ice concentration forecasting
+- **NetCDF ingestion and visualization tools** for NOAA GLSEA data
+- **Daily visualization generation** with stable color scales and custom land shading
+- **Machine learning dataset builder** using 7-day input windows
+- **U-Net model training** for next-day ice forecasting
+- **Automated February prediction generator** with versioned output folders and GIFs
+- **Static dashboard website** hosted through GitHub Pages
+- **Jupyter notebooks** for exploration and development
 
-## 📁 Project Structure
+## Project Structure
 
-```
+````markdown
 MISpaceHackathon/
-├── assets/                 # Static website assets
-│   └── css/               # Stylesheets
+├── assets/
+│   └── css/
 │       └── style.css
-├── data/                  # Weather data storage
-│   ├── raw/              # Raw NetCDF files
-│   ├── processed/        # Processed datasets
-│   └── external/         # External data sources
-├── notebooks/            # Jupyter notebooks
+│
+├── data/
+│   ├── raw/                 # (optional; primary raw data lives outside repo)
+│   ├── processed/           # ML-ready arrays (X.npy, y.npy)
+│   └── external/
+│
+├── notebooks/
 │   └── 01_data_exploration.ipynb
-├── src/                  # Python source code
-│   ├── data_processing/ # Data processing utilities
-│   ├── models/          # ML models
-│   └── utils/           # Helper functions
-├── index.html           # Main landing page
-├── data-science.html    # Data science guide page
-└── README.md            # This file
+│
+├── src/
+│   ├── daily_visualizations/         # Jan11-Jan31 PNGs
+│   │
+│   ├── data_processing/
+│   │   ├── load_and_visualize.py        # Generate daily PNGs and cache raw arrays
+│   │   ├── inspect_nc.py                # Examine structure and metadata of NetCDF files
+│   │   ├── downsample_data.py           # Create lower-resolution datasets for fast experiments
+│   │   ├── processor.py                 # Utility class for NetCDF and shapefile preprocessing
+│   │   └── nc_visualizer_outputs/       # Saved figures from netCDF visualization scripts
+│   │
+│   ├── models/
+│   │   ├── predict_unet.py              # Run trained U-Net to produce February predictions and GIFs
+│   │   ├── train_unet.py                # Train U-Net for 5 epochs using (X,y) processed arrays
+│   │   └── checkpoints/                 # Model weights saved after each epoch
+│   │
+│   ├── utils/
+│   │   └── gif_utils.py (optional)
+│   │
+│   └── predictions_ver_*/            # Feb predictions + GIFs
+│
+├── index.html
+├── data-science.html
+└── README.md
+````
 
-```
-
-## 🛠️ Viewing the Website
+## Viewing the Website
 
 ### GitHub Pages
 
-Visit the live website at: `https://elijahleemorgan.github.io/MISpaceHackathon/`
+Live site:  
+`https://elijahleemorgan.github.io/MISpaceHackathon/`
 
 ### Local Development
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/ElijahLeeMorgan/MISpaceHackathon.git
-   cd MISpaceHackathon
-   ```
+```bash
+git clone https://github.com/ElijahLeeMorgan/MISpaceHackathon.git
+cd MISpaceHackathon
+```
 
-2. **Open in browser**:
-   Simply open `index.html` in your web browser, or use a simple HTTP server:
-   ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Then visit: http://localhost:8000
-   ```
+Open `index.html` directly, or run:
 
-3. **For Python Data Science Work**:
-   ```bash
-   # Create virtual environment
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   
-   # Install dependencies
-   pip install -r requirements.txt
-   ```
+```bash
+python -m http.server 8000
+```
+
+## Local Development
+
+### Clone the Repository
+```bash
+git clone https://github.com/ElijahLeeMorgan/MISpaceHackathon.git
+cd MISpaceHackathon
+```
+
+### Serve the Site
+Open `index.html` directly, or run:
+```bash
+python -m http.server 8000
+```
+Then visit `http://localhost:8000`.
+
+### Python Data Science Environment
+```bash
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
 
 ## 🚦 Quick Start
 
@@ -149,122 +178,98 @@ Identify weather patterns and anomalies:
 - Classification models
 - Anomaly detection
 
-### Example ML Workflow
-
-```python
-from sklearn.ensemble import RandomForestRegressor
-import xarray as xr
-import pandas as pd
-
-# Load weather data
-ds = xr.open_dataset('weather_data.nc')
-
-# Prepare features
-features = ['temperature', 'pressure', 'humidity']
-X = pd.DataFrame({feat: ds[feat].values.flatten() for feat in features})
-y = ds['future_temp'].values.flatten()
-
-# Train model
-model = RandomForestRegressor(n_estimators=100)
-model.fit(X, y)
-
-# Make predictions
-predictions = model.predict(X_test)
-```
-
-## 📓 Jupyter Notebooks
-
-Explore data interactively:
 
 ```bash
-# Start Jupyter Notebook
-jupyter notebook notebooks/
-
-# Or JupyterLab
-jupyter lab
+pip install xarray netCDF4 numpy pandas matplotlib cartopy
 ```
 
-Example notebooks included:
-- Data exploration with NetCDF files
-- Weather data visualization
-- Machine learning for weather prediction
-- Time series analysis
+## Machine Learning Workflow
 
-## 🧪 Development
+### Dataset Construction
 
-### Project Setup
+The pipeline converts daily 1024×1024 ice maps into sequences:
 
-1. Clone and navigate to the repository
-2. Install Python dependencies: `pip install -r requirements.txt`
-3. Open `index.html` in a browser or use a local server
-4. Modify HTML/CSS in `assets/` directory
-5. Add Python code in `src/` directory for data processing
+- Inputs: 7 consecutive days
+- Label: next day
 
-### Adding New Content
+Output shapes:
 
-1. Create new HTML pages as needed
-2. Link them in the navigation
-3. Style with existing CSS or add custom styles
-4. Keep it simple and focused on weather data science
+```
+X: (N, 7, 1024, 1024)
+y: (N, 1024, 1024)
+```
 
-## 📝 Weather Data Sources
-
-### Recommended Data Sources
-
-- **NOAA**: National Oceanic and Atmospheric Administration
-  - https://www.noaa.gov
-  - Free weather and climate data
-
-- **ECMWF**: European Centre for Medium-Range Weather Forecasts
-  - https://www.ecmwf.int
-  - Reanalysis data (ERA5)
-
-- **NASA**: Earth Observing System
-  - https://earthdata.nasa.gov
-  - Satellite weather data
-
-- **NCEP**: National Centers for Environmental Prediction
-  - Numerical weather prediction data
-
-### Python Libraries for Weather Data
+### Training the U-Net
 
 ```bash
-# Core libraries
-pip install xarray netCDF4 numpy pandas
-
-# Visualization
-pip install matplotlib seaborn cartopy
-
-# Machine Learning
-pip install scikit-learn tensorflow pytorch
-
-# Additional tools
-pip install scipy jupyter
+python src/models/train_unet.py
 ```
 
-## 🤝 Contributing
+- Trains for 5 epochs
+- Saves model checkpoints in `src/models/checkpoints/`
 
-Contributions welcome! To contribute:
+### Predicting Future Ice Maps (February)
+
+```bash
+python src/models/predict_unet.py
+```
+
+Outputs:
+
+```
+predictions_ver_1/
+  feb01.png
+  feb02.png
+  ...
+  animation.gif
+```
+
+The script applies:
+
+- Value clipping (0-6)
+- Median filtering
+- Constant color scale
+- Custom light-blue land shading
+
+## Jupyter Notebooks
+
+Interactive exploration available in `notebooks/01_data_exploration.ipynb`, covering:
+
+- NetCDF structure
+- Great Lakes spatial patterns
+- Data cleaning and visualization
+- Early forecasting experiments
+
+## Data Sources
+
+- **NOAA GLSEA** (Great Lakes Surface Environmental Analysis)
+- **NOAA CoastWatch / GLERL**
+- **NCEP/HRRR/GFS** for weather variables
+
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes (HTML, CSS, Python code)
-4. Test your changes locally
-5. Submit a pull request
+3. Make changes
+4. Submit a pull request
 
-Focus areas:
-- Weather data analysis examples
-- ML model implementations
-- Data visualization improvements
-- Documentation enhancements
+Areas for contribution:
 
-## 📄 License
+- Visualization improvements
+- Additional preprocessing steps
+- New ML architectures
+- Enhanced dashboard content
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## License
 
-## 👥 Authors
+MIT License. See `LICENSE` for details.
 
-- MISpace Hackathon Team
+## Authors
+
+- Marcos Sanson
+- Elijah Lee Morgan
+- Diego De Jong
+- Darren Fife
 
 ## 🙏 Acknowledgments
 
@@ -278,7 +283,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions and support:
 - Open an issue on GitHub
-- Check the Data Science guide page
 - Review example notebooks
 - Visit weather data source documentation
 
