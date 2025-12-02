@@ -12,6 +12,7 @@
 # Ignore all raw data folders except documentation
 data/
 !data/README.md
+src/data_processing/utils/out/
 
 ########################################
 # IGNORE GENERATED PREDICTIONS & VISUALS
