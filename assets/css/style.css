@@ -45,7 +45,8 @@ body {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border-radius: 12px;
-    margin-bottom: 30px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     box-shadow: var(--shadow-lg);
 }
 
@@ -68,6 +69,12 @@ body {
     gap: 15px;
     margin-bottom: 30px;
     flex-wrap: wrap;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    padding: 12px 24px;
+    background: var(--surface);
 }
 
 .nav-btn {
@@ -315,9 +322,17 @@ body {
     border-radius: 8px;
     border: 2px solid var(--border-color);
     text-decoration: none;
-    color: var(--text-primary);
     transition: all 0.3s ease;
     display: block;
+    font-size: larger;
+    font-weight: 550;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+.link-card.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .link-card:hover {
@@ -342,6 +357,13 @@ body {
     display: flex;
     flex-direction: column;
     gap: 25px;
+}
+
+.about-forecast-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
 .about-section {
@@ -373,6 +395,54 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.forecast {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+#forecast1 {
+    display: flex;
+}
+
+.forecast img {
+    flex: 0 0 50%;
+    max-width: 50%;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+.forecast .forecast-text {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 8px 12px;
+    color: var(--text-primary);
+}
+
+/* Keep ID-specific rule for backward compatibility */
+#forecast1 {
+    display: flex;
+}
+
+/* Stack vertically on small screens */
+@media (max-width: 768px) {
+    .forecast {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .forecast img,
+    .forecast .forecast-text {
+        flex: 0 0 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
