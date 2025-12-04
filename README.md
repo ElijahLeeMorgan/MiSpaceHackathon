@@ -1,5 +1,5 @@
 # MISpace Hackathon – Great Lakes Ice Forecasting and Data Science Platform  
-### Link: https://elijahleemorgan.github.io/MISpaceHackathon/
+### Link: [https://elijahleemorgan.github.io/MISpaceHackathon/](https://elijahleemorgan.github.io/MiSpaceHackathon/index.html)
 
 A data science and machine learning project focused on Great Lakes ice forecasting using NOAA NetCDF (.nc) datasets. Includes full data processing pipelines, U-Net forecasting, visualization tools, and a static GitHub Pages dashboard.  
 Built by students at Grand Valley State University who live, study, and work near the Great Lakes.
