@@ -1,21 +1,45 @@
-# MISpace Hackathon - Great Lakes Ice Forecasting and Data Science Platform
+# MISpace Hackathon – Great Lakes Ice Forecasting and Data Science Platform  
+### https://elijahleemorgan.github.io/MISpaceHackathon/
 
-A data science and machine learning project focused on Great Lakes ice forecasting using NOAA NetCDF (.nc) datasets. Includes full data processing pipelines, U-Net forecasting, visualization tools, and a static GitHub Pages dashboard.
+A data science and machine learning project focused on Great Lakes ice forecasting using NOAA NetCDF (.nc) datasets. Includes full data processing pipelines, U-Net forecasting, visualization tools, and a static GitHub Pages dashboard.  
+Built by students at Grand Valley State University who live, study, and work near the Great Lakes.
 
-## Features
+---
 
-- **End-to-end pipeline** for Great Lakes ice concentration forecasting
-- **NetCDF ingestion and visualization tools** for NOAA GLSEA data
-- **Daily visualization generation** with stable color scales and custom land shading
-- **Machine learning dataset builder** using 7-day input windows
-- **U-Net model training** for next-day ice forecasting
-- **Automated February prediction generator** with versioned output folders and GIFs
-- **Static dashboard website** hosted through GitHub Pages
-- **Jupyter notebooks** for exploration and development
+## 👥 Team Members and Roles
 
-## Project Structure
+- **Marcos Sanson** – Machine Learning Model Development  
+  Processed NetCDF data, built the forecasting dataset, developed and trained the U-Net model, and generated all HD visualizations and February predictions.
 
-````markdown
+- **Elijah Morgan** – Data Reading & Analysis  
+  Handled ingestion of raw NetCDF files, verified dataset structure and metadata, and organized the initial file system used across the project.
+
+- **Darren Fife** – Data Reading & Documentation  
+  Evaluated and interpreted the GLSEA dataset, confirmed the continuity of observations, and contributed to the end-to-end data preparation workflow.
+
+- **Diego de Jong** – Frontend & Dashboard Development  
+  Built the GitHub Pages site, designed the layout and visual presentation of predictions, and created the project demo video.
+
+---
+
+## ✨ Features
+
+- **End-to-end pipeline** for Great Lakes ice concentration forecasting  
+- **NetCDF ingestion and visualization tools** for NOAA GLSEA data  
+- **Daily visualization generation** with stable color scales and custom land shading  
+- **Machine learning dataset builder** using 7-day input windows  
+- **U-Net model training** for next-day ice forecasting  
+- **Automated February prediction generator** with versioned output folders and GIFs  
+- **Static dashboard website** hosted through GitHub Pages  
+- **Jupyter notebooks** for exploration and development  
+- **HD visualization script** with grid overlays for targeted ice-clearing operations  
+- **Clear, modular project structure** suitable for future extensions
+
+---
+
+## 📁 Project Structure
+
+```
 MISpaceHackathon/
 ├── assets/
 │   └── css/
@@ -30,19 +54,19 @@ MISpaceHackathon/
 │   └── 01_data_exploration.ipynb
 │
 ├── src/
-│   ├── daily_visualizations/         # Jan11-Jan31 PNGs
+│   ├── daily_visualizations/         # Jan11–Jan31 PNGs
 │   │
 │   ├── data_processing/
-│   │   ├── load_and_visualize.py        # Generate daily PNGs and cache raw arrays
-│   │   ├── inspect_nc.py                # Examine structure and metadata of NetCDF files
-│   │   ├── downsample_data.py           # Create lower-resolution datasets for fast experiments
-│   │   ├── processor.py                 # Utility class for NetCDF and shapefile preprocessing
-│   │   └── nc_visualizer_outputs/       # Saved figures from netCDF visualization scripts
+│   │   ├── load_and_visualize.py
+│   │   ├── inspect_nc.py
+│   │   ├── downsample_data.py
+│   │   ├── processor.py
+│   │   └── nc_visualizer_outputs/
 │   │
 │   ├── models/
-│   │   ├── predict_unet.py              # Run trained U-Net to produce February predictions and GIFs
-│   │   ├── train_unet.py                # Train U-Net for 5 epochs using (X,y) processed arrays
-│   │   └── checkpoints/                 # Model weights saved after each epoch
+│   │   ├── predict_unet.py
+│   │   ├── train_unet.py
+│   │   └── checkpoints/
 │   │
 │   ├── utils/
 │   │   └── gif_utils.py (optional)
@@ -52,14 +76,16 @@ MISpaceHackathon/
 ├── index.html
 ├── data-science.html
 └── README.md
-````
+```
 
-## Viewing the Website
+---
+
+## 🌐 Viewing the Website
 
 ### GitHub Pages
 
-Live site:  
-`https://elijahleemorgan.github.io/MISpaceHackathon/`
+**Live site:**
+[https://elijahleemorgan.github.io/MISpaceHackathon/](https://elijahleemorgan.github.io/MISpaceHackathon/)
 
 ### Local Development
 
@@ -68,131 +94,77 @@ git clone https://github.com/ElijahLeeMorgan/MISpaceHackathon.git
 cd MISpaceHackathon
 ```
 
-Open `index.html` directly, or run:
+Open `index.html` or run:
 
 ```bash
 python -m http.server 8000
 ```
 
-## Local Development
+Visit: `http://localhost:8000`
 
-### Clone the Repository
-```bash
-git clone https://github.com/ElijahLeeMorgan/MISpaceHackathon.git
-cd MISpaceHackathon
-```
+---
 
-### Serve the Site
-Open `index.html` directly, or run:
-```bash
-python -m http.server 8000
-```
-Then visit `http://localhost:8000`.
+## 👨‍💻 Python Environment Setup
 
-### Python Data Science Environment
 ```bash
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+---
+
 ## 🚦 Quick Start
 
 ### Viewing the Dashboard
 
-Simply open the website in your browser or visit the GitHub Pages URL.
+Open the website or load `index.html`.
 
 ### Working with Weather Data
 
-```python
-# Install required libraries
+```bash
 pip install xarray netCDF4 pandas numpy matplotlib
+```
 
-# Example: Load and analyze a NetCDF file
+```python
 import xarray as xr
 import matplotlib.pyplot as plt
 
-# Open NetCDF file
 ds = xr.open_dataset('weather_data.nc')
-
-# View dataset info
 print(ds)
 
-# Access temperature data
 temp = ds['temperature']
-
-# Plot average temperature
 temp.mean(dim=['lat', 'lon']).plot()
 plt.title('Average Temperature Over Time')
 plt.show()
 ```
 
-### Running Jupyter Notebooks
-
-```bash
-# Start Jupyter
-jupyter notebook notebooks/
-
-# Or use JupyterLab
-jupyter lab
-```
+---
 
 ## 📊 Working with NetCDF Files
 
 ### What are NetCDF Files?
 
-NetCDF (Network Common Data Form) files are the standard format for weather and climate data:
-- Multi-dimensional arrays (time, latitude, longitude, altitude)
-- Self-describing with embedded metadata
-- Efficient storage and access
-- Widely used in meteorology and climate science
+NetCDF (Network Common Data Form) files are widely used in climate and weather science. They store large multi-dimensional arrays such as temperature, ice concentration, wind speed, and more.
 
-### Essential Python Libraries
+### Useful Libraries
 
 ```bash
 pip install xarray netCDF4 numpy pandas matplotlib cartopy
 ```
 
-### Common Weather Data Variables
+---
 
-- **Temperature**: Surface and atmospheric temperature
-- **Precipitation**: Rainfall, snowfall amounts
-- **Wind**: Speed, direction, gusts
-- **Pressure**: Atmospheric and sea-level pressure
-- **Humidity**: Relative and specific humidity
-- **Cloud Cover**: Cloud fraction and types
-
-## 🎯 Machine Learning Applications
-
-### Weather Forecasting
-
-Predict future weather conditions using:
-- Time series models (ARIMA, LSTM)
-- Random Forests and Gradient Boosting
-- Neural Networks
-
-### Pattern Recognition
-
-Identify weather patterns and anomalies:
-- Clustering algorithms (K-means, DBSCAN)
-- Classification models
-- Anomaly detection
-
-
-```bash
-pip install xarray netCDF4 numpy pandas matplotlib cartopy
-```
-
-## Machine Learning Workflow
+## 🤖 Machine Learning Workflow
 
 ### Dataset Construction
 
-The pipeline converts daily 1024×1024 ice maps into sequences:
+The forecasting dataset converts daily 1024×1024 GLSEA maps into:
 
-- Inputs: 7 consecutive days
-- Label: next day
+* **Inputs:** 7 consecutive days
+* **Label:** next-day ice map
 
-Output shapes:
+Resulting shapes:
 
 ```
 X: (N, 7, 1024, 1024)
@@ -205,10 +177,10 @@ y: (N, 1024, 1024)
 python src/models/train_unet.py
 ```
 
-- Trains for 5 epochs
-- Saves model checkpoints in `src/models/checkpoints/`
+* Trains for 5 epochs
+* Saves checkpoints to `src/models/checkpoints/`
 
-### Predicting Future Ice Maps (February)
+### Generating February Predictions
 
 ```bash
 python src/models/predict_unet.py
@@ -218,74 +190,80 @@ Outputs:
 
 ```
 predictions_ver_1/
-  feb01.png
-  feb02.png
-  ...
-  animation.gif
+  Feb01.png
+  Feb02.png
+  Feb03.png
+  Feb04.png
+  forecast.gif
 ```
 
-The script applies:
+Enhancements include:
 
-- Value clipping (0-6)
-- Median filtering
-- Constant color scale
-- Custom light-blue land shading
-
-## Jupyter Notebooks
-
-Interactive exploration available in `notebooks/01_data_exploration.ipynb`, covering:
-
-- NetCDF structure
-- Great Lakes spatial patterns
-- Data cleaning and visualization
-- Early forecasting experiments
-
-## Data Sources
-
-- **NOAA GLSEA** (Great Lakes Surface Environmental Analysis)
-- **NOAA CoastWatch / GLERL**
-- **NCEP/HRRR/GFS** for weather variables
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes
-4. Submit a pull request
-
-Areas for contribution:
-
-- Visualization improvements
-- Additional preprocessing steps
-- New ML architectures
-- Enhanced dashboard content
-
-## License
-
-MIT License. See `LICENSE` for details.
-
-## Authors
-
-- Marcos Sanson
-- Elijah Lee Morgan
-- Diego De Jong
-- Darren Fife
-
-## 🙏 Acknowledgments
-
-- xarray and NetCDF communities for excellent tools
-- NOAA, ECMWF, and NASA for providing open weather data
-- Python data science community
-- Scikit-learn and TensorFlow teams
-- GitHub Pages for free hosting
-
-## 📞 Support
-
-For questions and support:
-- Open an issue on GitHub
-- Review example notebooks
-- Visit weather data source documentation
+* Clamp to 0–6 range
+* Stabilization smoothing
+* Light-blue land shading
+* HD rendering and GIF generation
 
 ---
 
-Built with ❤️ for weather data science and machine learning
+## 📓 Jupyter Notebooks
+
+`notebooks/01_data_exploration.ipynb` demonstrates:
+
+* NetCDF inspection
+* Visualization of Great Lakes patterns
+* Data cleaning
+* Early ML experiments
+
+---
+
+## 🌍 Data Sources
+
+* NOAA GLSEA (Great Lakes Surface Environmental Analysis)
+* NOAA CoastWatch / GLERL
+* NCEP / HRRR / GFS weather model fields (optional future extensions)
+
+---
+
+## 🤝 Contributing
+
+1. Fork
+2. Create a feature branch
+3. Implement changes
+4. Submit a pull request
+
+Possible contribution areas:
+
+* Better visualization
+* Additional preprocessing
+* New ML architectures
+* More interactive dashboard features
+
+---
+
+## 📜 License
+
+MIT License — see `LICENSE`.
+
+---
+
+## 🧑‍💻 Authors
+
+* Marcos Sanson
+* Elijah Lee Morgan
+* Diego De Jong
+* Darren Fife
+
+---
+
+## 🙏 Acknowledgments
+
+* xarray and NetCDF communities
+* NOAA, NASA, ECMWF for open data
+* Python data science community
+* PyTorch and scikit-learn teams
+* GitHub Pages for hosting
+
+---
+
+Built with ❤️ by students at **Grand Valley State University**, inspired by the Great Lakes we live beside and study around.
