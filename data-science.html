@@ -23,10 +23,7 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h2>Welcome to Laker IceLabs</h2>
-                <p>Exploring and analyzing weather patterns using NetCDF files and machine learning</p>
-                <br>
-                <h2>Team Members:</h2>
+                <h2>Laker IceLabs Team Members:</h2>
                 <h3>Elijah Morgan - Data Reading</h3>
                 <h3>Darren Fife - Data Reading</h3>
                 <h3>Marcos Sanson - ML Model Development</h3>
@@ -36,12 +33,27 @@
             </div>
         </section>
 
-        <!-- Main Content -->
-        <section class="content-section">
-            <div class="card">
-                <h2>🔬 Working with Weather Data</h2>
-                <p>Our project focuses on analyzing weather data using NetCDF files, a standard format in climate and meteorological sciences.</p>
-            </div>
+        <!--yt video link-->
+            <section class="links-section">
+                <div class="card">
+                    <h2>Demo Video</h2>
+                    <div class="link-grid">
+                        <a href="https://youtube.com" class="link-card" target="_blank" style="text-align: center;">
+                            <h4>💻 Youtube Video Link 💻</h4>
+                            <p></p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+         <!--write up-->
+            <section class="about-forecast-section">
+                <div class="card">
+                    <h2>Project Write Up</h2>
+                    <article>Our project focuses on analyzing weather data using NetCDF files, a standard format in climate and meteorological sciences.</article>
+                </div>
+            </section>
+      
 
             <!-- About Section -->
         <section id="about" class="about-section">
@@ -129,9 +141,7 @@
                 </ol>
             </div>
 
-       
-
-
+           
             <!-- Weather Data Types 
             <div class="card">
                 <h2>🌡️ Weather Data Types</h2>
@@ -163,114 +173,7 @@
                 </div>
             </div>-->
 
-            <!-- ML Applications -->
-            <div class="card">
-                <h2>🤖 Machine Learning Applications</h2>
-                <p>We apply various ML techniques to weather data:</p>
-
-                <h3>1. Weather Forecasting</h3>
-                <p>Predict future weather conditions based on historical patterns using time series models and neural networks.</p>
-                <div class="code-block">
-                    <pre><code># Example: Simple weather prediction
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-
-# Prepare features and target
-X = weather_features  # Temperature, pressure, humidity, etc.
-y = future_temperature  # Target variable
-
-# Train model
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-model = RandomForestRegressor(n_estimators=100)
-model.fit(X_train, y_train)
-
-# Predict
-predictions = model.predict(X_test)</code></pre>
-                </div>
-
-                <h3>2. Pattern Recognition</h3>
-                <p>Identify weather patterns, anomalies, and climate trends using clustering and classification algorithms.</p>
-
-                <h3>3. Extreme Event Detection</h3>
-                <p>Detect and predict extreme weather events like storms, heat waves, and cold snaps.</p>
-
-                <h3>4. Climate Analysis</h3>
-                <p>Analyze long-term climate trends and variability.</p>
-            </div>
-
-            
-
-            <!-- Example Code -->
-            <div class="card">
-                <h2>💻 Complete Example</h2>
-                <div class="code-block">
-                    <pre><code># Complete workflow example
-import xarray as xr
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import StandardScaler
-
-# 1. Load NetCDF file
-ds = xr.open_dataset('weather_data.nc')
-
-# 2. Extract variables
-temp = ds['temperature']
-precip = ds['precipitation']
-
-# 3. Convert to pandas DataFrame for ML
-df = pd.DataFrame({
-    'temperature': temp.values.flatten(),
-    'precipitation': precip.values.flatten()
-})
-
-# 4. Clean data
-df = df.dropna()
-
-# 5. Feature scaling
-scaler = StandardScaler()
-df_scaled = scaler.fit_transform(df)
-
-# 6. Create visualizations
-plt.figure(figsize=(12, 6))
-plt.subplot(1, 2, 1)
-plt.plot(temp.mean(dim=['lat', 'lon']))
-plt.title('Average Temperature Over Time')
-plt.xlabel('Time')
-plt.ylabel('Temperature (°C)')
-
-plt.subplot(1, 2, 2)
-plt.plot(precip.mean(dim=['lat', 'lon']))
-plt.title('Average Precipitation Over Time')
-plt.xlabel('Time')
-plt.ylabel('Precipitation (mm)')
-plt.tight_layout()
-plt.show()</code></pre>
-                </div>
-            </div>
-
-            
-
-             <!-- Quick Links -->
-            <section class="links-section">
-                <div class="card">
-                    <h2>Links (if needed)</h2>
-                    <div class="link-grid">
-                        <a href="data-science.html" class="link-card">
-                            <h4>📈 Data Science Guide</h4>
-                            <p>Learn about working with weather data and ML</p>
-                        </a>
-                        <a href="notebooks/" class="link-card">
-                            <h4>📓 Jupyter Notebooks</h4>
-                            <p>Explore our data analysis notebooks</p>
-                        </a>
-                        <a href="https://github.com/ElijahLeeMorgan/MISpaceHackathon" class="link-card" target="_blank">
-                            <h4>💻 GitHub Repository</h4>
-                            <p>View the source code and contribute</p>
-                        </a>
-                    </div>
-                </div>
-            </section>
+          
 
           
         </section>

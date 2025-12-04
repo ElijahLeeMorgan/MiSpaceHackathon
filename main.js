@@ -1,6 +1,4 @@
-// on click a day btn, make all forecast invisible
-// make the needed one visible
-
+// Forecast buttons functionality
 const buttons = document.querySelectorAll('button');
 const forecasts = document.querySelectorAll('.forecast');
 
