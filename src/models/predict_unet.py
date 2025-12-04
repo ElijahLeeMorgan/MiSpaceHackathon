@@ -1,4 +1,5 @@
-"""Sea Ice Forecasting Prediction Script.
+"""
+Sea Ice Forecasting Prediction Script.
 
 This module generates 28-day sea ice concentration forecasts using a trained U-Net model.
 It loads historical ice data, applies the model iteratively to predict future states,
@@ -177,7 +178,7 @@ def predict_future_month(model, init_seq, steps=28):
         # Store the constrained prediction
         preds.append(pred)
 
-        # Slide the temporal window forward by one day
+        # Slide the temporal windaow forward by one day
         # Remove oldest day, append new prediction
         seq = np.concatenate([seq[1:], pred[np.newaxis, ...]], axis=0)
 
