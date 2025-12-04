@@ -31,14 +31,17 @@
         <section class="content-section">
             <div class="card">
                 <h2>About Forecast Data</h2>
-                <article>
-                    -- Data processing balls, include narritive on how we got everything --
-                    <br><br> -- ML model balls
-                    <br><br> -- Forecast explanation balls
-                    <br><br>The output PNGs and the GIF show the model's predicted ice concentration maps for each forecasted day. Each image is a full 1024x1024 grid pulled directly from the structure of the original NetCDF files, which means that every pixel corresponds to the same spatial location on the Great Lakes as in the real dataset. Because of how the dataset stores latitude, the images render flipped vertically by default, so north appears at the bottom and south at the top. The x-axis still represents longitude and the y-axis represents latitude in that inverted orientation.
-                    <br><br>Each pixel's color reflects the predicted ice concentration value from the model. We use a fixed color scale from 0 to 6 so the meaning stays consistent across all days. I think in the original January data, values near 0 represent open water and higher values represent thicker or more complete ice cover. On this scale, darker blues correspond to higher ice values and lighter or washed-out blues represent lower values. The color bar on the right side of each image stays constant so you can compare predictions across time.
-                    <br><br>Additionally, the PNGs represent single-day predictions, one for each day the model generates. The GIF combines all PNGs into a time-lapse showing how the model expects ice to grow or shift across the lakes. Because the spatial grid is preserved, you can track ice changes across the region even though the output is vertically flipped relative to normal map orientation.
-                </article>
+                <p>The output PNGs and GIF show the model's predicted ice concentration maps for each forecasted day. 
+                    Each image is a full 1024x1024 grid pulled directly from the structure of the original NetCDF files, which means that every pixel corresponds to the same spatial location on the Great Lakes as in the real dataset. 
+                    The x-axis represents longitude and the y-axis represents latitude.</p>
+                <p>Each pixel's color reflects the predicted ice concentration value from the model. 
+                    We use a fixed color scale from 0 to 6 so the meaning stays consistent across all days. 
+                    In the original January data, values near 0 represent open water and higher values represent thicker or more complete ice cover. 
+                    On this scale, darker blues correspond to higher ice values and lighter or washed-out blues represent lower values. 
+                    The color bar on the right side of each image stays constant so you can compare predictions across time.</p>
+                <p>Additionally, the PNGs represent single-day predictions, one for each day the model generates. 
+                    The GIF combines all PNGs into a time-lapse showing how the model expects ice to grow or shift across the lakes. 
+                    Because the spatial grid is preserved, you can track ice changes across the region.</p>
             </div>
 
             <!-- Forecast -->
@@ -51,57 +54,21 @@
                     <button class="link-card">Day + 3</button>
                 </div>
                 <br>
-                <div class="forecast" id="forecast1">
-                    <img src="Feb01_prediction.png">
-                    <article class="forecast-text">
-                        <ul>
-                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
-                            <li><strong>Ice Thickness:</strong> Increasing</li>
-                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
-                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
-                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
-                            <li><strong>Extra:</strong> Western Lake Erie maintaining 7–9/10 coverage with new ridge development</li>
-                        </ul>
-                    </article>
-                </div>
                 <div class="forecast">
-                    <img src="Feb02_pred.png">
-                    <article class="forecast-text">
-                        <ul>
-                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
-                            <li><strong>Ice Thickness:</strong> Increasing</li>
-                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
-                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
-                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
-                            <li><strong>Extra:</strong> Western Lake Erie maintaining 7–9/10 coverage with new ridge development</li>
-                        </ul>
-                    </article>
-                </div>
-                <div class="forecast">
-                    <img src="Feb03_pred.png">
-                    <article class="forecast-text">
-                        <ul>
-                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
-                            <li><strong>Ice Thickness:</strong> Increasing</li>
-                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
-                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
-                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
-                            <li><strong>Extra:</strong> Western Lake Erie maintaining 7–9/10 coverage with new ridge development</li>
-                        </ul>
-                    </article>
-                </div>
-                <div class="forecast">
-                    <img src="Feb04_pred.png">
-                    <article class="forecast-text">
-                        <ul>
-                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
-                            <li><strong>Ice Thickness:</strong> Increasing</li>
-                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
-                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
-                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
-                            <li><strong>Extra:</strong> Western Lake Erie maintaining 7–9/10 coverage with new ridge development</li>
-                        </ul>
-                    </article>
+                    <img class="forecast-img" src="Feb01_prediction.png" id="forecast1">
+                    <img class="forecast-img" src="Feb02_pred.png">
+                    <img class="forecast-img" src="Feb03_pred.png">
+                    <img class="forecast-img" src="Feb04_pred.png">
+                    
+                    <!--Forecast Description-->
+                    <ul>
+                        <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
+                        <li><strong>Ice Thickness:</strong> Increasing</li>
+                        <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
+                        <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
+                        <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
+                        <li><strong>Extra:</strong> Western Lake Erie maintaining 7–9/10 coverage with new ridge development</li>
+                    </ul>
                 </div>
             </div>
 

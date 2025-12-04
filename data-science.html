@@ -33,33 +33,11 @@
             </div>
         </section>
 
-        <!--yt video link-->
-            <section class="links-section">
-                <div class="card">
-                    <h2>Demo Video</h2>
-                    <div class="link-grid">
-                        <a href="https://youtube.com" class="link-card" target="_blank" style="text-align: center;">
-                            <h4>💻 Youtube Video Link 💻</h4>
-                            <p></p>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-         <!--write up-->
-            <section class="about-forecast-section">
-                <div class="card">
-                    <h2>Project Write Up</h2>
-                    <article>Our project focuses on analyzing weather data using NetCDF files, a standard format in climate and meteorological sciences.</article>
-                </div>
-            </section>
-      
-
-            <!-- About Section -->
-        <section id="about" class="about-section">
+        <!--About Section-->
+        <section class="about-forecast-section">
             <div class="card">
                 <h2>About This Project</h2>
-                <p>The MISpace Hackathon project focuses on weather data science and machine learning. We work with:</p>
+                <p>The MISpace Hackathon project focuses on weather data science and machine learning. It includes full data processing pipelines, U-Net forecasting, visualization tools, and a static GitHub Pages dashboard. We work with:</p>
                 <ul>
                     <li><strong>NetCDF Files:</strong> Industry-standard format for weather and climate data</li>
                     <li><strong>Weather Datasets:</strong> Temperature, precipitation, wind speed, and atmospheric pressure</li>
@@ -80,37 +58,61 @@
             </div>
         </section>
 
-        <!-- Resources -->
+        <!--yt video link-->
+        <section class="links-section">
             <div class="card">
-                <h2>📚 Resources & Data Sources</h2>
-                
-                <h3>Weather Data Sources:</h3>
-                <ul>
-                    <li><strong>NOAA:</strong> National Oceanic and Atmospheric Administration - <a href="https://www.noaa.gov" target="_blank">www.noaa.gov</a></li>
-                    <li><strong>ECMWF:</strong> European Centre for Medium-Range Weather Forecasts - <a href="https://www.ecmwf.int" target="_blank">www.ecmwf.int</a></li>
-                    <li><strong>NASA:</strong> Earth Observing System Data - <a href="https://earthdata.nasa.gov" target="_blank">earthdata.nasa.gov</a></li>
-                    <li><strong>NCEP:</strong> National Centers for Environmental Prediction</li>
-                </ul>
+                <h2>Demo Video</h2>
+                <div class="link-grid">
+                    <a href="https://youtube.com" class="link-card" target="_blank" style="text-align: center;">
+                        <h4>💻 Youtube Video Link 💻</h4>
+                        <p></p>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-                <h3>Python Libraries:</h3>
-                <ul>
-                    <li><strong>xarray:</strong> Multi-dimensional labeled arrays for NetCDF</li>
-                    <li><strong>netCDF4:</strong> Low-level NetCDF interface</li>
-                    <li><strong>pandas:</strong> Data manipulation and analysis</li>
-                    <li><strong>scikit-learn:</strong> Machine learning algorithms</li>
-                    <li><strong>matplotlib/seaborn:</strong> Data visualization</li>
-                    <li><strong>cartopy:</strong> Geospatial data visualization</li>
-                </ul>
-
-                <h3>Learning Resources:</h3>
-                <ul>
-                    <li>xarray documentation: <a href="https://docs.xarray.dev" target="_blank">docs.xarray.dev</a></li>
-                    <li>Climate Data Guide by NCAR</li>
-                    <li>Python for Atmospheric Science</li>
-                </ul>
+       
+      
+        <section id="about" class="content-section">
+            <!--Write Up-->
+            <div class="card">
+                <h2>Project Write Up</h2>
+                <p>Our team built a complete data and machine learning pipeline that uses the given MiSpace NetCDF dataset to produce accurate and human readable ice concentration forecasts for the Great Lakes. 
+                    The project includes data preparation and a forecasting model and a visualization pipeline and clear documentation that explains each part of the system.</p>
+                <p>We started with the provided NetCDF files for January 11 to 31. 
+                    These files contain daily 1024x1024 environmental grids with latitude and longitude and a temperature variable that represents ice concentration. 
+                    We manually organized the dataset into the correct order and checked each file for consistency. 
+                    We confirmed that the temperature field formed a time series across the 21 days. 
+                    This gave us a clean historical dataset that could be used to train a forecasting model.</p>
+                <p>To build the predictor, we trained a U-Net model on these daily grids. 
+                    The model takes the previous seven days of ice concentration as input and predicts the next day’s full 1024x1024 map. 
+                    This turns the problem into a supervised sequence to image forecast. 
+                    We trained the model for 5 to 10 epochs per cycle and repeated the process across several generations of improvements over multiple weeks. 
+                    Each version of the model was tested and reviewed. 
+                    This helped us correct issues such as drift or missing ice regions and unrealistic shapes in longer predictions. 
+                    Through careful tuning and evaluation, we reached a stable configuration that produced visually realistic outputs.</p>
+                <p>After training, we used the final seven January days, January 25 to 31, to predict February 1 through 4. 
+                    Each prediction was fed back into the next input window so the system could forecast multiple days into February. 
+                    The outputs were saved as high resolution PNGs so they would be easy to interpret. 
+                    Each image uses a fixed 0 to 6 color scale that matches the original dataset. 
+                    Darker blue represents higher ice concentration and lighter blue represents lower levels or open water. 
+                    The axes represent the spatial layout of the lakes with longitude on the x axis and latitude on the y axis. 
+                    The data is flipped vertically when displayed so north appears at the top in the final images.</p>
+                <p>We also generated GIF animations that show the forecasted days in sequence. 
+                    This makes it easy to see how the model expects ice to grow or retreat across the lakes. 
+                    Each run of the predictor is saved in its own numbered directory so results remain organized as the project evolves.</p>
+                <p>The GitHub Pages dashboard now includes updated documentation that explains the dataset and the ML pipeline. 
+                    It also explains the data preparation steps and provides examples of the output. 
+                    The repository structure shows where data and models and processing tools and notebooks are located.</p>
+                <p>This project meets the hackathon requirements by using the provided dataset directly and producing a working Great Lakes ice forecasting system. 
+                    It also presents the outputs in a readable and scientifically meaningful format. 
+                    Using only the January 11 to 31 data, our final pipeline produced consistent predictions for February 1 to 4 that preserve the spatial structure of the lakes and follow realistic ice trends. 
+                    This demonstrates that machine learning can support short term ice forecasting when combined with careful data handling and multiple training iterations.</p>
             </div>
 
-        <!-- Data Processing Workflow -->
+            
+
+            <!-- Data Processing Workflow -->
             <div class="card">
                 <h2>⚙️ Data Processing Workflow</h2>
                 <ol class="workflow-list">
@@ -141,41 +143,49 @@
                 </ol>
             </div>
 
-           
-            <!-- Weather Data Types 
+            <!-- Project Structure -->
             <div class="card">
-                <h2>🌡️ Weather Data Types</h2>
-                <div class="data-types-grid">
-                    <div class="data-type-card">
-                        <h4>Temperature</h4>
-                        <p>Surface temperature, air temperature at various altitudes</p>
-                    </div>
-                    <div class="data-type-card">
-                        <h4>Precipitation</h4>
-                        <p>Rainfall, snowfall, total precipitation rates</p>
-                    </div>
-                    <div class="data-type-card">
-                        <h4>Wind</h4>
-                        <p>Wind speed, wind direction, gusts</p>
-                    </div>
-                    <div class="data-type-card">
-                        <h4>Pressure</h4>
-                        <p>Atmospheric pressure, sea-level pressure</p>
-                    </div>
-                    <div class="data-type-card">
-                        <h4>Humidity</h4>
-                        <p>Relative humidity, specific humidity</p>
-                    </div>
-                    <div class="data-type-card">
-                        <h4>Cloud Cover</h4>
-                        <p>Cloud fraction, cloud types</p>
-                    </div>
+                <h2>📁 Our Project Structure</h2>
+                <div class="code-block">
+                    <pre><code>MISpaceHackathon/
+├── assets/
+│   └── css/
+│       └── style.css
+│
+├── data/
+│   ├── raw/                 # (optional; primary raw data lives outside repo)
+│   ├── processed/           # ML-ready arrays (X.npy, y.npy)
+│   └── external/
+│
+├── notebooks/
+│   └── 01_data_exploration.ipynb
+│
+├── src/
+│   ├── daily_visualizations/         # Jan11-Jan31 PNGs
+│   │
+│   ├── data_processing/
+│   │   ├── load_and_visualize.py        # Generate daily PNGs and cache raw arrays
+│   │   ├── inspect_nc.py                # Examine structure and metadata of NetCDF files
+│   │   ├── downsample_data.py           # Create lower-resolution datasets for fast experiments
+│   │   ├── processor.py                 # Utility class for NetCDF and shapefile preprocessing
+│   │   └── nc_visualizer_outputs/       # Saved figures from netCDF visualization scripts
+│   │
+│   ├── models/
+│   │   ├── predict_unet.py              # Run trained U-Net to produce February predictions and GIFs
+│   │   ├── train_unet.py                # Train U-Net for 5 epochs using (X,y) processed arrays
+│   │   └── checkpoints/                 # Model weights saved after each epoch
+│   │
+│   ├── utils/
+│   │   └── gif_utils.py (optional)
+│   │
+│   └── predictions_ver_*/            # Feb predictions + GIFs
+│
+├── index.html
+├── data-science.html
+└── README.md</code></pre>
                 </div>
-            </div>-->
+            </div>
 
-          
-
-          
         </section>
 
         <!-- Footer -->
