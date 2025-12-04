@@ -11,96 +11,127 @@
         <!-- Header -->
         <header class="header">
             <h1>🌦️ MISpace Hackathon</h1>
-            <p class="subtitle">Weather Data Science Dashboard</p>
+            <p class="subtitle">Weather Forecast Dashboard</p>
         </header>
 
         <!-- Navigation -->
         <nav class="nav">
-            <a href="index.html" class="nav-btn active">Home</a>
-            <a href="data-science.html" class="nav-btn">Data Science</a>
-            <a href="#about" class="nav-btn">About</a>
+            <a href="index.html" class="nav-btn active">Forecast</a>
+            <a href="data-science.html" class="nav-btn">Credits & Info</a>
         </nav>
 
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h2>Welcome to Our Weather Data Science Project</h2>
+                <h2>Welcome to Laker IceLabs</h2>
                 <p>Exploring and analyzing weather patterns using NetCDF files and machine learning</p>
             </div>
         </section>
 
-        <!-- Overview Cards -->
-        <section class="grid">
+        <section class="content-section">
             <div class="card">
-                <div class="card-icon">📊</div>
-                <h3>Data Analysis</h3>
-                <p>Working with NetCDF (.nc) files for comprehensive weather data analysis</p>
+                <h2>About Forecast Data</h2>
+                <p>The output PNGs and GIF show the model's predicted ice concentration maps for each forecasted day. 
+                    Each image is a full 1024x1024 grid pulled directly from the structure of the original NetCDF files, which means that every pixel corresponds to the same spatial location on the Great Lakes as in the real dataset. 
+                    The x-axis represents longitude and the y-axis represents latitude.</p>
+                <p>Each pixel's color reflects the predicted ice concentration value from the model. 
+                    We use a fixed color scale from 0 to 6 so the meaning stays consistent across all days. 
+                    In the original January data, values near 0 represent open water and higher values represent thicker or more complete ice cover. 
+                    On this scale, darker blues correspond to higher ice values and lighter or washed-out blues represent lower values. 
+                    The color bar on the right side of each image stays constant so you can compare predictions across time.</p>
+                <p>Additionally, the PNGs represent single-day predictions, one for each day the model generates. 
+                    The GIF combines all PNGs into a time-lapse showing how the model expects ice to grow or shift across the lakes. 
+                    Because the spatial grid is preserved, you can track ice changes across the region.</p>
             </div>
 
+            <!-- Forecast -->
             <div class="card">
-                <div class="card-icon">🤖</div>
-                <h3>Machine Learning</h3>
-                <p>Applying ML models to predict weather patterns and trends</p>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">🌡️</div>
-                <h3>Weather Data</h3>
-                <p>Processing temperature, precipitation, wind, and atmospheric data</p>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="card">
-                <h2>About This Project</h2>
-                <p>The MISpace Hackathon project focuses on weather data science and machine learning. We work with:</p>
-                <ul>
-                    <li><strong>NetCDF Files:</strong> Industry-standard format for weather and climate data</li>
-                    <li><strong>Weather Datasets:</strong> Temperature, precipitation, wind speed, and atmospheric pressure</li>
-                    <li><strong>Machine Learning:</strong> Predictive models for weather forecasting and pattern recognition</li>
-                    <li><strong>Data Visualization:</strong> Interactive charts and maps for weather data exploration</li>
-                </ul>
-                
-                <h3>Technologies</h3>
-                <div class="tech-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">NetCDF4</span>
-                    <span class="tag">xarray</span>
-                    <span class="tag">Pandas</span>
-                    <span class="tag">Scikit-learn</span>
-                    <span class="tag">Matplotlib</span>
-                    <span class="tag">Jupyter</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Links -->
-        <section class="links-section">
-            <div class="card">
-                <h2>Quick Links</h2>
+                <h2>Forecast</h2>
                 <div class="link-grid">
-                    <a href="data-science.html" class="link-card">
-                        <h4>📈 Data Science Guide</h4>
-                        <p>Learn about working with weather data and ML</p>
-                    </a>
-                    <a href="notebooks/" class="link-card">
-                        <h4>📓 Jupyter Notebooks</h4>
-                        <p>Explore our data analysis notebooks</p>
-                    </a>
-                    <a href="https://github.com/ElijahLeeMorgan/MISpaceHackathon" class="link-card" target="_blank">
-                        <h4>💻 GitHub Repository</h4>
-                        <p>View the source code and contribute</p>
-                    </a>
+                    <button class="link-card active">Day</button>
+                    <button class="link-card">Day + 1</button>
+                    <button class="link-card">Day + 2</button>
+                    <button class="link-card">Day + 3</button>
+                </div>
+                <br>
+
+                <div class="forecast" id="forecast1">
+                    <img src="Feb01_grid.png">
+                    <article class="forecast-text">
+                        <p>Ice forecast that shows the spatial field of ice on February 1st.</p>
+                        <ul>
+                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
+                            <li><strong>Ice Thickness:</strong> Mild</li>
+                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
+                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
+                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
+                            <li><strong>Extra:</strong> Western Lake Erie maintaining 7–9/10 coverage with new ridge development</li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="forecast">
+                    <img src="Feb02_grid.png">
+                    <article class="forecast-text">
+                        <p>Ice forecast that shows the spatial field of ice on February 2nd.</p>
+                        <ul>
+                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
+                            <li><strong>Ice Thickness:</strong> Increasing</li>
+                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
+                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
+                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
+                            <li><strong>Extra:</strong> Lake Ontario temperatures cooling</li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="forecast">
+                    <img src="Feb03_grid.png">
+                    <article class="forecast-text">
+                        <p>Ice forecast that shows the spatial field of ice on February 3rd.</p>
+                        <ul>
+                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
+                            <li><strong>Ice Thickness:</strong> Increasing</li>
+                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
+                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
+                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
+                            <li><strong>Extra:</strong> Western Lake Erie still maintaining 7–9/10 coverage</li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="forecast">
+                    <img src="Feb04_grid.png">
+                    <article class="forecast-text">
+                        <p>Ice forecast that shows the spatial field of ice on February 4th.</p>
+                        <ul>
+                            <li><strong>Ice Conditions:</strong> Rapid ice formation along shorelines</li>
+                            <li><strong>Ice Thickness:</strong> Increasing</li>
+                            <li><strong>Ice Movement:</strong> Drift ice mobile with west and northwest winds</li>
+                            <li><strong>USCG Operational Priority Areas:</strong> Track maintenance required in western Lake Erie, the Straits of Mackinac, and the Duluth-Superior approach as refreeze and brash buildup restrict movement. Escorts likely needed for bulk carriers transiting Toledo → Detroit River, Green Bay → Sturgeon Bay, and Apostle Islands → Whitefish Bay routes.</li>
+                            <li><strong>Shipping Guidance:</strong> Primary commercial lanes remain navigable but increasingly reliant on USCG-maintained tracks, especially in western Lake Erie, Saginaw Bay, and Green Bay. Offshore routing is preferred across Michigan-Huron corridors when drift ice encroaches on nearshore paths.</li>
+                            <li><strong>Extra:</strong> Lake Huron ice coverage noticably increasing, with new ridge development</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
+
+            <!-- Forecast Timelapse -->
+            <div class="card">
+                <h2>Forecast Timelapse</h2>
+                <div class="link-grid">
+                    <img src="forecast_hd.gif" alt="Forecast Timelapse" style="justify-self: center; width: 100%;">
+                </div>
+                <p>*Gif may timeout, refresh page to restart</p>
+            </div>
+
         </section>
+
+        
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2024 MISpace Hackathon Team. Weather Data Science Project.</p>
-            <p>Built for exploring weather patterns and machine learning applications.</p>
+            <p>&copy; 2025 MISpace Hackathon Laker IceLabs Weather Data Science Project.</p>
+            <a href="https://github.com/ElijahLeeMorgan/MISpaceHackathon">GitHub Repo</a>
         </footer>
     </div>
+    <script src="main.js"></script>
 </body>
 </html>
