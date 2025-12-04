@@ -77,37 +77,13 @@
             <!--Write Up-->
             <div class="card">
                 <h2>Project Write Up</h2>
-                <p>Our team built a complete data and machine learning pipeline that uses the given MiSpace NetCDF dataset to produce accurate and human readable ice concentration forecasts for the Great Lakes. 
-                    The project includes data preparation and a forecasting model and a visualization pipeline and clear documentation that explains each part of the system.</p>
-                <p>We started with the provided NetCDF files for January 11 to 31. 
-                    These files contain daily 1024x1024 environmental grids with latitude and longitude and a temperature variable that represents ice concentration. 
-                    We manually organized the dataset into the correct order and checked each file for consistency. 
-                    We confirmed that the temperature field formed a time series across the 21 days. 
-                    This gave us a clean historical dataset that could be used to train a forecasting model.</p>
-                <p>To build the predictor, we trained a U-Net model on these daily grids. 
-                    The model takes the previous seven days of ice concentration as input and predicts the next day’s full 1024x1024 map. 
-                    This turns the problem into a supervised sequence to image forecast. 
-                    We trained the model for 5 to 10 epochs per cycle and repeated the process across several generations of improvements over multiple weeks. 
-                    Each version of the model was tested and reviewed. 
-                    This helped us correct issues such as drift or missing ice regions and unrealistic shapes in longer predictions. 
-                    Through careful tuning and evaluation, we reached a stable configuration that produced visually realistic outputs.</p>
-                <p>After training, we used the final seven January days, January 25 to 31, to predict February 1 through 4. 
-                    Each prediction was fed back into the next input window so the system could forecast multiple days into February. 
-                    The outputs were saved as high resolution PNGs so they would be easy to interpret. 
-                    Each image uses a fixed 0 to 6 color scale that matches the original dataset. 
-                    Darker blue represents higher ice concentration and lighter blue represents lower levels or open water. 
-                    The axes represent the spatial layout of the lakes with longitude on the x axis and latitude on the y axis. 
-                    The data is flipped vertically when displayed so north appears at the top in the final images.</p>
-                <p>We also generated GIF animations that show the forecasted days in sequence. 
-                    This makes it easy to see how the model expects ice to grow or retreat across the lakes. 
-                    Each run of the predictor is saved in its own numbered directory so results remain organized as the project evolves.</p>
-                <p>The GitHub Pages dashboard now includes updated documentation that explains the dataset and the ML pipeline. 
-                    It also explains the data preparation steps and provides examples of the output. 
-                    The repository structure shows where data and models and processing tools and notebooks are located.</p>
-                <p>This project meets the hackathon requirements by using the provided dataset directly and producing a working Great Lakes ice forecasting system. 
-                    It also presents the outputs in a readable and scientifically meaningful format. 
-                    Using only the January 11 to 31 data, our final pipeline produced consistent predictions for February 1 to 4 that preserve the spatial structure of the lakes and follow realistic ice trends. 
-                    This demonstrates that machine learning can support short term ice forecasting when combined with careful data handling and multiple training iterations.</p>
+                <p>Our team built a complete data and machine learning pipeline that uses the MiSpace Network Common Data Form (NetCDF) dataset to generate accurate, human readable ice concentration forecasts for the Great Lakes. The system includes data preparation, a forecasting model, a visualization pipeline, and documentation that explains how each part works. Together, these components form an end-to-end tool that aligns with the operational needs of the United States Coast Guard (USCG) ice mission.</p>
+                <p>We began by working with the provided NetCDF files from January 11 to 31. These files contain daily 1024×1024 environmental grids with latitude, longitude, and a temperature variable that represents ice concentration. Darren analyzed the dataset early in the project and reviewed the related documentation. His work helped the team understand the structure of the historical data, the test data, and the goals of the challenge. He also outlined the steps required for success and continued providing reviews and guidance as the technical system developed. Elijah organized all the raw NetCDF files into a clear directory structure and verified that the 21 days formed a continuous time series. This gave us a clean and consistent dataset for supervised learning.</p>
+                <p>Using this organized dataset, we built the forecasting system. Marcos developed the data analysis and machine learning pipeline. He processed the January NetCDF files, created tools to load and visualize the 1024×1024 grids, and assembled the seven day training sequences. He implemented the U-Net (Universal Network) model and trained several versions of it over multiple weeks. We reviewed each generation of the model and looked for issues such as drift, loss of detail, or unrealistic melting patterns. Through repeated tuning and validation, the model became stable and produced realistic spatial forecasts. Marcos then used the January 25 to 31 window to generate predictions for February 1 to 4. Each prediction was saved as a high resolution PNG and added to a GIF animation for easy interpretation.</p>
+                <p>Diego built the frontend using HyperText Markup Language (HTML), Cascading Style Sheets (CSS), and JavaScript (JS). He designed a GitHub Pages dashboard that displays the model outputs clearly and makes the forecasts easy to understand. His work focused on user experience and visual clarity. He also created the project’s demo video to summarize the workflow and display the predictions.</p>
+                <p>The final forecasting system takes the previous seven days of ice concentration and predicts the next full 1024×1024 map. Multi day forecasting is done by feeding each prediction back into the next input window. We used a fixed 0 to 6 color scale that matches the dataset so the images remain consistent across days. Darker blue represents higher ice concentration and lighter blue represents lower concentration or open water. The maps are flipped vertically so north appears at the top, which makes them easier to interpret for operational users. The GIF animations show how the predicted ice evolves across several days.</p>
+                <p>This project meets the hackathon requirements by using only the provided MiSpace NetCDF dataset and transforming it into a working Great Lakes ice forecasting tool. We prepared the data carefully, trained and refined the model over several weeks, produced scientifically meaningful images, and integrated everything into a clear user facing dashboard. The idea is practical and extends the value of the dataset by converting static historical records into short term forecasts that could support USCG routing and safety decisions.</p>
+                <p>Overall, our work demonstrates that machine learning can provide short term Great Lakes ice prediction using the supplied dataset. The final system produces accurate and readable maps and offers a foundation that can be expanded for future operational use.</p>
             </div>
 
             
