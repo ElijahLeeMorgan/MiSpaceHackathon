@@ -397,7 +397,7 @@ body {
 }
 
 .forecast {
-    display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
     gap: 16px;
@@ -409,12 +409,12 @@ body {
     max-width: 50%;
     width: 100%;
     height: auto;
-    display: none;
+    display: block;
     border-radius: 6px;
 }
 
 #forecast1 {
-    display: block;
+    display: flex;
 }
 
 .forecast .forecast-text {
