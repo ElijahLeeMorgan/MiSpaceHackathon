@@ -60,7 +60,7 @@ MISpaceHackathon/
 
 ### GitHub Pages
 
-[Live site](https://elijahleemorgan.github.io/MISpaceHackathon/)
+[Live site](https://elijahleemorgan.github.io/MiSpaceHackathon/)
 
 ### Local Development
 
